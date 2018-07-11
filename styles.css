@@ -1,0 +1,97 @@
+body {
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Title Bar */
+.title-bar {
+	background: #54c3a4;
+	color: white;
+	width: 100%;
+	height: 50px;
+}
+.siteTitle {
+	float: left;
+	padding-top: 0;
+}
+
+.siteTitle h1 {
+	margin: 5px 0 0 5px;
+}
+
+.currentUser {
+	float: right;
+	margin: 0;
+}
+
+.currentUser p {
+	margin: 5px 0 0 0;
+}
+
+.currentUser h2 {
+	margin: 5px 5px 0 0;
+}
+
+/* App Flex-Box */
+.flex-container {
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+
+/* Left Menu */
+.menu {
+	flex-grow: 1;
+}
+
+
+/* Middle Transaction List */
+.dashboard {
+	flex-grow: 2;
+}
+.addBillButton {
+	background: #ff641e;
+}
+.settleButton {
+	background: #54c3a4;
+}
+
+.singleTransaction {
+	width: 200px;
+	margin: 5px 0 5px 0;
+}
+
+.transactionDate {
+
+}
+
+
+.transactionTitle {
+	font-weight: bold;
+}
+
+
+.transactionPaidBy {
+
+}
+
+
+.transactionAmount {
+
+}
+
+
+
+
+
+
+
+/* Right Balance Summary */
+.summary {
+	flex-grow: 1;
+}
+.balanceResult {
+	color: #54c3a4;
+}
+
