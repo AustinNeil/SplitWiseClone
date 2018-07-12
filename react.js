@@ -21,22 +21,33 @@ class TransactionHistory extends React.Component {
 	render() {
 		return(
 			<div>
+					<div className="transaction-header">
+						April 2018
+					</div>
 				{this.state.transactions.map(((transaction) =>
-					<div key={'${transaction.id}'}>
-						<div className="singleTransaction">
-							<div className="transactionDate">
+					<div className="single-transaction-container" key={'${transaction.id}'}>
+							<div className="transaction-date">
 								{transaction.date}
 							</div>
-							<div className="transactionTitle">
+							<div className="transaction-title">
 								{transaction.title}
 							</div>
-							<div className="transactionPaidBy">
-								{transaction.paidBy}
+							<div className="transaction-paid-by-container">
+								<div className="transaction-paid-by">
+									{transaction.paidBy}
+								</div>
+								<div className="transaction-paid-by-amount">
+									{transaction.amount}
+								</div>
 							</div>
-							<div className="transactionAmount">
-								{transaction.amount}
+							<div className="transaction-owed-to-container">
+								<div className="transaction-owed-to">
+									Austin
+								</div>
+								<div className="transaction-owed-to-amount">
+									100.00
+								</div>
 							</div>
-						</div>
 					</div>
 					))
 			}
@@ -49,9 +60,11 @@ class Dashboard extends React.Component {
 	render() {
 		return(
 			<div className="dashboard">
-				<h1>Ada Lovelace</h1>
-				<button className="addBillButton">Add a bill </button>
-				<button className="settleButton">Settle Up </button>
+				<div className="dashboard-header">
+					<h1 className="dashboard-user">Ada Lovelace</h1>
+					<button className="button addBillButton">Add a bill </button>
+					<button className="button settleButton">Settle Up </button>
+				</div>
 				<TransactionHistory />
 			</div>
 			)
@@ -62,13 +75,13 @@ class Summary extends React.Component {
 	render() {
 		return(
 			<div className="summary">
-				<ul>
-					<li>icon 1</li>
-					<li>icon 2</li>
-					<li>icon 3</li>
-					<li>icon 4</li>
-				</ul>
-				<h3>Your Balance</h3>
+				<div className="sort-icon-list">
+					<div className="summary-sort-icon">icon 1</div>
+					<div className="summary-sort-icon">icon 2</div>
+					<div className="summary-sort-icon">icon 3</div>
+					<div className="summary-sort-icon">icon 4</div>
+				</div>
+				<div className="balance-header">YOUR BALANCE</div>
 				<div className="balanceResult">
 					<h3>Ada owes you</h3>
 					<h1>$69.21</h1>
@@ -83,16 +96,14 @@ class Menu extends React.Component {
 	render() {
 		return (
 			<div className="left-align menu">
-				<ul>
-					<li>Dashbaord</li>
-					<li>All Expenses</li>
-					<li>Add Friends + Add</li>
-					<li>Ada Lovelace</li>
-					<li>Harry Houdini</li>
-					<li>Marcel Proust</li>
-					<li>Nellie Bly</li>
-					<li>Wilbur Wright</li>
-				</ul>
+					<div className="menu-item">Dashboard</div>
+					<div className="menu-item">All Expenses</div>
+					<div className="menu-item add-friend">Add Friends + Add</div>
+					<div className="menu-item">Ada Lovelace</div>
+					<div className="menu-item">Harry Houdini</div>
+					<div className="menu-item">Marcel Proust</div>
+					<div className="menu-item">Nellie Bly</div>
+					<div className="menu-item">Wilbur Wright</div>
 			</div>
 			)
 	}
@@ -103,7 +114,7 @@ class Title extends React.Component {
 		return(
 			<div className="title-bar">
 				<div className="siteTitle">
-					<h1>Splitwise</h1>
+					<h2>SPLITWISE</h2>
 				</div>
 				<div className="currentUser">
 					<p>XX</p>
