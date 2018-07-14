@@ -17,6 +17,30 @@ class TransactionHistory extends React.Component {
 		}).catch(error => console.log(error))
 	}
 
+	formatName = (orig) => {
+		return orig.substring(0,6)
+	}
+
+	formatDate = (date) => {
+
+		let dateStr = new Date(date)
+		let dayOfMonth = dateStr.getDate()
+		let months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"]
+		let monthStr = months[dateStr.getMonth()]
+		if(dayOfMonth.toString().length < 2){
+			dayOfMonth = "0" + dayOfMonth
+		}
+		return (
+			<div className="transaction-paid-by">
+				<div className="date-month">
+					{monthStr}
+				</div>
+				<div className="date-day">
+					{dayOfMonth}
+				</div>
+			</div>
+		)
+	}
 
 	render() {
 		return(
@@ -25,24 +49,23 @@ class TransactionHistory extends React.Component {
 						April 2018
 					</div>
 				{this.state.transactions.map(((transaction) =>
-					<div className="single-transaction-container" key={'${transaction.id}'}>
+					<div className="single-transaction-container" key={transaction.id}>
 							<div className="transaction-date">
-								{transaction.date}
+								
+								{this.formatDate(transaction.date)}
 							</div>
 							<div className="transaction-title">
 								{transaction.title}
 							</div>
 							<div className="transaction-paid-by-container">
-								<div className="transaction-paid-by">
-									{transaction.paidBy}
-								</div>
+								{this.formatName(transaction.paidBy)} paid
 								<div className="transaction-paid-by-amount">
-									{transaction.amount}
+									 {transaction.amount}
 								</div>
 							</div>
 							<div className="transaction-owed-to-container">
 								<div className="transaction-owed-to">
-									Austin
+									Austin owes
 								</div>
 								<div className="transaction-owed-to-amount">
 									100.00
@@ -76,10 +99,10 @@ class Summary extends React.Component {
 		return(
 			<div className="summary">
 				<div className="sort-icon-list">
-					<div className="summary-sort-icon">icon 1</div>
-					<div className="summary-sort-icon">icon 2</div>
-					<div className="summary-sort-icon">icon 3</div>
-					<div className="summary-sort-icon">icon 4</div>
+					<div className="summary-sort-icon"><i className="fas fa-bars"></i></div>
+					<div className="summary-sort-icon"><i className="fas fa-calendar-alt"></i></div>
+					<div className="summary-sort-icon"><i className="fas fa-chart-bar"></i></div>
+					<div className="summary-sort-icon"><i className="fas fa-cog"></i></div>
 				</div>
 				<div className="balance-header">YOUR BALANCE</div>
 				<div className="balanceResult">
@@ -93,17 +116,31 @@ class Summary extends React.Component {
 }
 
 class Menu extends React.Component {
+	constructor() {
+		super()
+		// this.state({ activeItem: ''})
+		// this.toggleActiveItem = this.toggleActiveItem.bind(this)
+	}
+
+	// toggleActiveItem() {
+	// 	this.setState({ activeItem: this})
+	// }
+
 	render() {
 		return (
 			<div className="left-align menu">
-					<div className="menu-item">Dashboard</div>
-					<div className="menu-item">All Expenses</div>
-					<div className="menu-item add-friend">Add Friends + Add</div>
-					<div className="menu-item">Ada Lovelace</div>
-					<div className="menu-item">Harry Houdini</div>
-					<div className="menu-item">Marcel Proust</div>
-					<div className="menu-item">Nellie Bly</div>
-					<div className="menu-item">Wilbur Wright</div>
+					<div className="menu-buttons">
+						<div className="menu-item"><i className="fas fa-square"></i> Dashboard</div>
+						<div className="menu-item"><i className="fas fa-list"></i> All Expenses</div>
+					</div>
+					<div className="menu-item add-friend">Add Friends <i className="fas fa-user-plus"></i></div>
+					<div className="friends-available">
+						<div className="menu-item active-menu-selection"><i className="fas fa-user"></i> Ada Lovelace</div>
+						<div className="menu-item"><i className="fas fa-user"></i> Harry Houdini</div>
+						<div className="menu-item"><i className="fas fa-user"></i> Marcel Proust</div>
+						<div className="menu-item"><i className="fas fa-user"></i> Nellie Bly</div>
+						<div className="menu-item"><i className="fas fa-user"></i> Wilbur Wright</div>
+					</div>
 			</div>
 			)
 	}
@@ -144,4 +181,7 @@ class App extends React.Component {
 	}
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render((
+	<ReactRouterDOM.BrowserRouter>
+		<App />
+	</ReactRouterDOM.BrowserRouter>), document.getElementById('root'));
